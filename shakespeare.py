@@ -4,8 +4,17 @@ import numpy as np
 import os
 import time
 import random
+import sys
 
-text = open('data/shakespeare.txt', 'rb').read().decode(encoding='utf-8')
+model_name = sys.argv[2]
+textfile = sys.argv[1]
+
+if model_name == None:
+    model_name = "shakespeare"
+if textfile == None:
+    sys.exit('No data text file specified in command line args')
+
+text = open(textfile, 'rb').read().decode(encoding='utf-8')
 vocab = sorted(set(text))
 
 char_to_index = {u:i for i, u in enumerate(vocab)}
@@ -76,6 +85,6 @@ model = build_model(vocab_size, embedding_dim, rnn_units, batch_size=1)
 model.load_weights(tf.train.latest_checkpoint(checkpoint_dir))
 model.build(tf.TensorShape([1, None]))
 model.summary()
-model.save('models/shakespeare')    # save the model locally
+model.save(f'models/{model_name}')    # save the model locally
 print("Succesfully saved model")
 
