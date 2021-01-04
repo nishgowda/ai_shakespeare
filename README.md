@@ -8,7 +8,7 @@ Run ``shakespeare.py``
  $ python3 shakespare.py
 ```
 
-After training the model, it should save in the *output* directory.
+After training the model, it should save in the *models* directory.
 
 ## Generating output
 Once the model is saved, you can now run it to produce **Shakespearian** writing!
@@ -16,6 +16,8 @@ Run ``genereate.py`` along with the location of the previously saved model.
 ```
   $ python3 generate.py models/shakespeare
 ```
+
+This will save the output in the *output* directory and print the name of the file.
 
  
 
