@@ -10,7 +10,7 @@ vocab = sorted(set(text))
 char_to_index = {u:i for i, u in enumerate(vocab)}
 index_to_char = np.array(vocab)
 # generate text from model with a word to start off with
-stress_dict = {}
+
 def generate_text(model, start_string):
     num_generate = 1000
     input_eval = [char_to_index[s] for s in start_string]
@@ -41,8 +41,10 @@ if __name__ == "__main__":
     model = tf.keras.models.load_model(f'models/{model_name}')
     print("Loaded model...")
     model.summary()
-    options = ["ROMEO", "JULIET", "EDMUND", "KING HENRY", "OTHELLO", "MACBETH"]
-    character = random.choice(options)
+    options = ["ROMEO", "JULIET", "EDMUND", "KING_HENRY", "OTHELLO", "MACBETH"]
+    character = sys.argv[2]
+    if character = None:
+        character = random.choice(options)
     start_string = character + ":"
     gen_text = generate_text(model, start_string=start_string)
     write_to_file(gen_text, character)
